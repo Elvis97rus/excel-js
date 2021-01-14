@@ -9,10 +9,27 @@ const isDev = !isProd
 
 const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
 
+const jsLoaders = () => {
+    const loaders = [
+        {
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env']
+            }
+        }
+    ]
+
+    if (isDev) {
+        loaders.push('eslint-loader')
+    }
+
+    return loaders
+}
+
 module.exports = {
-    context: path.resolve(__dirname,'src'),
+    context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    entry: ['@babel/polyfill','./index.js'],
+    entry: ['@babel/polyfill', './index.js'],
     output: {
         filename: filename('js'),
         path: path.resolve(__dirname, 'dist')
@@ -20,13 +37,15 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@': path.resolve(__dirname,'src'),
-            '@core': path.resolve(__dirname,'src/core'),
+            '@': path.resolve(__dirname, 'src'),
+            '@core': path.resolve(__dirname, 'src/core'),
         }
     },
     devtool: isDev ? 'source-map' : false,
     devServer: {
-        port: 3300,
+        contentBase: path.join(__dirname, 'src'),
+        watchContentBase: true,
+        port: 3001,
         hot: isDev,
         open: true, // "--open" теперь указывается здесь
     },
@@ -35,8 +54,8 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: 'index.html',
             minify: {
-                removeComments:isProd,
-                collapseWhitespace:isProd,
+                removeComments: isProd,
+                collapseWhitespace: isProd,
             }
         }),
         new CopyPlugin({
@@ -54,7 +73,12 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+
+                        }
+                    },
                     'css-loader',
                     'sass-loader',
                 ],
@@ -62,12 +86,7 @@ module.exports = {
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+                use: jsLoaders(),
             },
         ],
     },
