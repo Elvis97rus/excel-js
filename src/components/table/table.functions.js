@@ -14,6 +14,9 @@ export function isCell(event) {
     return event.target.dataset.type === 'cell'
 }
 
+/*
+* Generates an Array of cells filled by id's ['row:col', ...]
+* */
 export function matrix($target, $current) {
     const target = $target.id(true)
     const current = $current.id(true)
@@ -25,4 +28,29 @@ export function matrix($target, $current) {
         rows.forEach(row => acc.push(`${row}:${col}`))
         return acc
     }, [])
+}
+
+/*
+* Change id of cell to select, based on keyPressed code
+* */
+export function nextSelector(key, {col, row}, rowCount = 20) {
+    const MIN_VAL = 1
+    const MAX_VAL = 26
+    switch (key) {
+        case 'Enter':
+        case 'ArrowDown':
+            row < 20 ? row++ : row
+            break
+        case 'Tab':
+        case 'ArrowRight':
+            col < MAX_VAL ? col++ : col
+            break
+        case 'ArrowLeft':
+            col > MIN_VAL ? col-- : col
+            break
+        case 'ArrowUp':
+            row > MIN_VAL ? row-- : row
+            break
+    }
+    return `[data-id="${row}:${col}"]`
 }
