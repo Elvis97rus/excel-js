@@ -50,6 +50,22 @@ class Dom {
         return this
     }
 
+    id(parse = null) {
+        if (parse) {
+            const parsed = this.id().split(':')
+            return {
+                row: +parsed[0],
+                col: +parsed[1]
+            }
+        }
+        return this.data.id
+    }
+
+    focus() {
+        this.$el.focus()
+        return this
+    }
+
     closest(selector) {
         return $(this.$el.closest(selector))
     }
@@ -60,6 +76,16 @@ class Dom {
 
     findAll(selector) {
         return this.$el.querySelectorAll(selector)
+    }
+
+    addClass(className) {
+        return this.$el.classList.add(className)
+    }
+    removeClass(className) {
+        return this.$el.classList.remove(className)
+    }
+    find(selector) {
+        return $(this.$el.querySelector(selector))
     }
 }
 
