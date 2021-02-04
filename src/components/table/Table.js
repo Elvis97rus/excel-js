@@ -15,6 +15,7 @@ export class Table extends ExcelComponent {
             name: 'Table',
             listeners: ['mousedown', 'keydown', 'input'],
             ...options
+
         })
         this.tableSelection = new TableSelection()
         this.rowsCount = 20
@@ -32,6 +33,7 @@ export class Table extends ExcelComponent {
         super.init()
 
         const $cell = this.$root.find('[data-id="1:1"]')
+
         this.selectSell($cell)
 
         this.$on('formula:onInput', text => {
@@ -45,6 +47,7 @@ export class Table extends ExcelComponent {
     selectSell($cell) {
         this.selection.selectSingle($cell)
         this.$emit('table:select', $cell)
+
     }
 
     onMousedown(event) {
@@ -75,6 +78,7 @@ export class Table extends ExcelComponent {
             event.preventDefault()
             const current = this.selection.current.id(true)
             const $next = this.$root.find(nextSelector(key, current))
+
             this.selectSell($next)
         }
     }
