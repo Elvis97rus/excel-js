@@ -6,6 +6,7 @@ import {
 } from '@/components/table/table.functions';
 import {$} from '@core/dom';
 import {TableSelection} from '@/components/table/TableSelection';
+import * as actions from '@/redux/actions';
 
 export class Table extends ExcelComponent {
     static className = 'excel__table'
@@ -22,7 +23,7 @@ export class Table extends ExcelComponent {
     }
 
     toHTML() {
-        return createTable(this.rowsCount)
+        return createTable(this.rowsCount, this.store.getState())
     }
 
     prepare() {
@@ -43,21 +44,22 @@ export class Table extends ExcelComponent {
             this.selection.current.focus()
         })
 
-        this.$subscribe(state => {
-            console.log('TableState-> ', state)
-        })
+        // console.log(storage('excel-state', this.state).colState)
+
+        // this.$subscribe(state => {
+        //     console.log('TableState-> ', state)
+        // })
     }
 
     selectSell($cell) {
         this.selection.selectSingle($cell)
         this.$emit('table:select', $cell)
-        // this.$dispatch({type: 'TEST'})
     }
 
     async resizeTable(event) {
         try {
             const data = await resize(event, this)
-            this.$dispatch({type: 'TABLE_RESIZE', data})
+            this.$dispatch(actions.tableResize(data))
             // console.log('Resize data: ', data)
         } catch (e) {
             console.warn('Resize err: ', e.message)

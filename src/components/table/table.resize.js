@@ -54,10 +54,12 @@ export function resize(event, object) {
                     height: height + 'px'
                 })
             }
+             const value = width || height
 
              resolve({
-                width,
-                id: type === 'col' ? $parent.data.index : null
+                value,
+                type,
+                id: type === 'col' ? $parent.data.index : $parent.data.row
             })
 
             $resizer.css({
