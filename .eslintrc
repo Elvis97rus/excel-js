@@ -15,7 +15,9 @@
     "require-jsdoc": "off",
     "no-trailing-spaces": "off",
     "operator-linebreak": "off",
-    "no-prototype-builtins": "off"
+    "no-prototype-builtins": "off",
+    "no-undef": "off",
+    "guard-for-in": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }

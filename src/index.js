@@ -6,8 +6,17 @@ import {Table} from '@/components/table/Table';
 import {CreateStore} from '@core/CreateStore';
 import {rootReducer} from '@/redux/rootReducer';
 import './scss/index.scss'
+import {storage, debounce} from '@core/utils';
+import {initialState} from '@/redux/initialState';
 
-const store = new CreateStore(rootReducer)
+const store = new CreateStore(rootReducer, initialState)
+
+// prevent each time state change spam
+const stateListener = debounce(state => {
+        storage('excel-state', state)
+    }, 300)
+
+store.subscribe(stateListener)
 
 const excel = new Excel('#app', {
     components: [Header, Toolbar, Formula, Table],
