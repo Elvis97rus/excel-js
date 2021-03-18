@@ -13,7 +13,6 @@ const store = new CreateStore(rootReducer, initialState)
 
 // prevent each time state change spam
 const stateListener = debounce(state => {
-        // console.log('App State: ', state)
         storage('excel-state', state)
     }, 300)
 
