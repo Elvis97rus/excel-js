@@ -20,21 +20,21 @@ export function createToolbar(state) {
             icon: 'format_align_left',
             active: state['textAlign'] === 'left',
             value: {
-                textAlign: state['textAlign'] === 'left' ? 'none' : 'left'
+                textAlign: 'left'
             }
         },
         {
             icon: 'format_align_center',
             active: state['textAlign'] === 'center',
             value: {
-                textAlign: state['textAlign'] === 'center' ? 'none' : 'center'
+                textAlign: 'center'
             }
         },
         {
             icon: 'format_align_right',
             active: state['textAlign'] === 'right',
             value: {
-                textAlign: state['textAlign'] === 'right' ? 'none' : 'right'
+                textAlign: 'right'
             }
         },
         {
@@ -46,16 +46,16 @@ export function createToolbar(state) {
         },
         {
             icon: 'format_italic',
-            active: state['fontStyle'] === 'normal',
+            active: state['fontStyle'] === 'italic',
             value: { fontStyle: state['fontStyle'] === 'italic'
                     ? 'normal' : 'italic'
             }
         },
         {
             icon: 'format_underlined',
-            active: state['textDecoration'] === 'none',
-            value: { textDecoration: state['textDecoration'] === 'underlined'
-                    ? 'none' : 'underlined'
+            active: state['textDecoration'] === 'underlined',
+            value: { textDecoration: state['textDecoration'] === 'underline'
+                    ? 'none' : 'underline'
             }
         },
     ]
