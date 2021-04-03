@@ -1,8 +1,12 @@
-function toHTML() {
+import {storage} from '@core/utils';
+
+function toHTML(key) {
+    const model = storage(key)
+    const id = key.split(':')[1]
     return `
      <li class="db__record">
-        <a href="#">Table № 1</a>
-        <strong>18.01.2021</strong>
+        <a href="#excel/${id}">${model.title}</a>
+        <strong>${model.dateCreated}</strong>
     </li>
     `
 }

@@ -46,7 +46,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'src'),
         watchContentBase: true,
-        port: 3001,
+        port: 3002,
         hot: isDev,
         open: true, // "--open" теперь указывается здесь
     },
