@@ -8,7 +8,6 @@ export class ExcelComponent extends DomListener {
         this.subscribe = options.subscribe || []
         this.store = options.store
         this.unSubscribers = []
-        // this.storeSub = null
         this.prepare()
     }
 
@@ -45,10 +44,6 @@ export class ExcelComponent extends DomListener {
         this.store.dispatch(action)
     }
 
-    // $subscribe(fn) {
-    //    this.storeSub = this.store.subscribe(fn)
-    // }
-
     /*
     * Incoming changelist, only for fields we subscribed on
     * */
@@ -74,6 +69,5 @@ export class ExcelComponent extends DomListener {
     destroy() {
         this.removeDOMListeners()
         this.unSubscribers.forEach(unSub => unSub())
-        // this.storeSub.unsubscribe()
     }
 }

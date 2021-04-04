@@ -6,12 +6,13 @@ function toHTML(key) {
     return `
      <li class="db__record">
         <a href="#excel/${id}">${model.title}</a>
-        <strong>${model.dateCreated}</strong>
+        <strong>
+            ${getOpenedDate(model)}
+        </strong>
     </li>
     `
 }
-// excel: 1123
-// excel: 1124
+
 function getAllKeys() {
     const keys = []
     for (let i = 0; i < localStorage.length; i++) {
@@ -24,13 +25,14 @@ function getAllKeys() {
     return keys
 }
 
-export function getAllRecords() {
-
+function getOpenedDate(model) {
+    return (new Date(model.openedDate).toLocaleTimeString()
+    + ' ' + new Date(model.openedDate).toLocaleDateString())
 }
 
 export function createRecordsTable() {
     const keys = getAllKeys()
-    console.log(keys)
+
     if (!keys.length) {
         return `<p>Please create your first table!</p>`
     }
@@ -38,7 +40,7 @@ export function createRecordsTable() {
     return `
         <div class="db__list-header">
             <span>Name</span>
-            <span>Creation date</span>
+            <span>Last Opened</span>
         </div>
 
         <ul class="db__list">

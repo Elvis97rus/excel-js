@@ -37,15 +37,6 @@ export class Router {
         this.$placeholder.append(this.page.getRoot())
 
         this.page.afterRender()
-
-        // if (typeof this.routes[ActiveRoute.path] !== 'undefined') {
-        //     const name = ActiveRoute.path
-        //     const Page = this.routes.[`${name}`]
-        //     const page = new Page()
-        //     this.$placeholder.append(page.getRoot())
-        //
-        //     page.afterRender()
-        // }
     }
 
     destroy() {

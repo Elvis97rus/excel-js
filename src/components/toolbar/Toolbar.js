@@ -29,7 +29,6 @@ export class Toolbar extends ExcelStateComponent {
 
     storeChanged(changes) {
         this.setState(changes.currentStyles)
-        console.log(changes.currentStyles)
     }
 
     onClick(event) {
@@ -37,9 +36,6 @@ export class Toolbar extends ExcelStateComponent {
         if ($target.data.type === 'button') {
             const value = JSON.parse($target.data.value)
             this.$emit('toolbar:applyStyle', value)
-
-            // const key = Object.keys(value)[0]
-            // this.setState({[key]: value[key]})
         }
     }
 }

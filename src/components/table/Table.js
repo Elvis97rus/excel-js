@@ -68,7 +68,6 @@ export class Table extends ExcelComponent {
         try {
             const data = await resize(event, this)
             this.$dispatch(actions.tableResize(data))
-            // console.log('Resize data: ', data)
         } catch (e) {
             console.warn('Resize err: ', e.message)
         }
@@ -115,7 +114,6 @@ export class Table extends ExcelComponent {
     }
 
     onInput(event) {
-        // this.$emit('table:input', $(event.target))
         this.updateTextInStore($(event.target).text())
     }
 }
