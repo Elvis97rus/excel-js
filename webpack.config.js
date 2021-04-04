@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
@@ -46,7 +47,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'src'),
         watchContentBase: true,
-        port: 3001,
+        port: 3002,
         hot: isDev,
         open: true, // "--open" теперь указывается здесь
     },
@@ -67,6 +68,9 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: filename('css')
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         })
     ],
     module: {

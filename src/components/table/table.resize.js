@@ -9,7 +9,6 @@ export function resize(event, object) {
         const sideProp = type === 'col' ? 'bottom' : 'right'
         let width
         let height
-       // let value
 
         const colIndex = $parent.data.index
         const rows = colIndex ? object.$root.findAll(
