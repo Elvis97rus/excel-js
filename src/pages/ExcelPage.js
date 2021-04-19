@@ -4,7 +4,7 @@ import {Header} from '@/components/header/Header';
 import {Toolbar} from '@/components/toolbar/Toolbar';
 import {Formula} from '@/components/formula/Formula';
 import {Table} from '@/components/table/Table';
-import {CreateStore} from '@core/CreateStore';
+import {createStore} from '@core/store/createStore';
 import {rootReducer} from '@/redux/rootReducer';
 import {storage, debounce} from '@core/utils';
 import {normalizeInitialState} from '@/redux/initialState';
@@ -18,7 +18,7 @@ export class ExcelPage extends Page {
         const params = this.params ? this.params : Date.now().toString()
 
         const state = storage(storageName(params))
-        const store = new CreateStore(rootReducer, normalizeInitialState(state))
+        const store = new createStore(rootReducer, normalizeInitialState(state))
 
 
         // prevent each time state change spam
