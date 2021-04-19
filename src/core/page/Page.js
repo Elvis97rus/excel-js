@@ -1,12 +1,10 @@
 export class Page {
     constructor(params) {
-        this.params = params
+        this.params = params || Date.now().toString()
     }
 
     getRoot() {
         throw new Error('Method "getRoot" should be implementer')
-        // eslint-disable-next-line no-unreachable
-        return ''
     }
     // hook
     afterRender() {
